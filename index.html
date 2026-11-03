@@ -624,7 +624,7 @@
       <nav class="nav-links">
         <button id="nav-home" onclick="switchTab('home')" class="nav-btn active">HOME</button>
         <button id="nav-teaching" onclick="switchTab('teaching')" class="nav-btn teaching-prominent">TEACHING</button>
-        <button id="nav-momo" onclick="switchTab('momo')" class="nav-btn momo-btn">摸摸</button>
+        <button id="nav-momo" onclick="switchTab('momo')" class="nav-btn momo-btn">MOMO</button>
       </nav>
     </header>
 
@@ -781,7 +781,7 @@
             </div>
             <div class="tut-containers">
               <a href="materials/BS2591_Tutorial2_Slides.pdf" target="_blank" class="box-slides-ready">Slides (PDF)</a>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial2_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -797,8 +797,8 @@
               <div class="tut-topic-line">Expectations <span class="tut-chap">(C&amp;S Ch. 4)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial3_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial3_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -814,8 +814,8 @@
               <div class="tut-topic-line">Money and Banking <span class="tut-chap">(C&amp;S Ch. 5)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial4_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial4_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -831,8 +831,8 @@
               <div class="tut-topic-line">Monetary Policy <span class="tut-chap">(C&amp;S Ch. 6)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial5_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial5_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -848,8 +848,8 @@
               <div class="tut-topic-line">Fiscal Policy I <span class="tut-chap">(C&amp;S Ch. 7)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial6_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial6_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -865,8 +865,8 @@
               <div class="tut-topic-line">Fiscal Policy II <span class="tut-chap">(C&amp;S Ch. 7)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial7_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial7_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
 
@@ -882,8 +882,8 @@
               <div class="tut-topic-line">Revision Week <span class="tut-chap">(C&amp;S Ch. 1–7)</span></div>
             </div>
             <div class="tut-containers">
-              <span class="box-tba slides-w">Slides (TBA)</span>
-              <span class="box-tba deriv-w">Derivation Support</span>
+              <span class="box-tba slides-w" data-auto-pdf="materials/BS2591_Tutorial8_Slides.pdf" data-role="slides">Slides (TBA)</span>
+              <span class="box-tba deriv-w" data-auto-pdf="materials/BS2591_Tutorial8_Derivation_Support.pdf" data-role="deriv">Derivation Support</span>
             </div>
           </div>
         </div>
@@ -1000,12 +1000,33 @@
       }).join('');
     }
 
+    // Auto-detect uploaded PDFs in materials/ folder so no HTML editing is needed
+    function autoCheckMaterials() {
+      document.querySelectorAll('[data-auto-pdf]').forEach(el => {
+        const pdfUrl = el.getAttribute('data-auto-pdf');
+        const role = el.getAttribute('data-role');
+        fetch(pdfUrl, { method: 'HEAD' }).then(res => {
+          if (res.ok) {
+            const a = document.createElement('a');
+            a.href = pdfUrl;
+            a.target = '_blank';
+            a.className = role === 'slides' ? 'box-slides-ready' : 'box-deriv-ready';
+            a.textContent = role === 'slides' ? 'Slides (PDF)' : 'Derivation Support';
+            const card = el.closest('.tutorial-card');
+            if (card) card.classList.add('has-material');
+            el.replaceWith(a);
+          }
+        }).catch(() => {});
+      });
+    }
+
     // Handle initial URL hash
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (['home', 'teaching', 'momo'].includes(hash)) {
       switchTab(hash);
     }
     renderMomo();
+    autoCheckMaterials();
   </script>
 </body>
 </html>
