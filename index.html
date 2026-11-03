@@ -282,6 +282,65 @@
     }
 
     /* TEACHING PAGE */
+    .pwd-gate {
+      max-width: 420px;
+      margin: 48px auto 64px;
+      border: 2px solid #000;
+      background: #fafafa;
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .pwd-gate h2 {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+      margin: 10px 0 8px 0;
+    }
+    .pwd-gate p {
+      font-size: 13px;
+      color: #525252;
+      margin: 0 0 20px 0;
+      line-height: 1.6;
+    }
+    .pwd-form {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .pwd-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 2px solid #000;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      background: #fff;
+      color: #000;
+      outline: none;
+    }
+    .pwd-error {
+      display: none;
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    .unofficial-alert {
+      border: 2px solid #dc2626;
+      background: #fef2f2;
+      color: #b91c1c;
+      padding: 14px 18px;
+      margin-bottom: 26px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .unofficial-alert strong {
+      color: #991b1b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
     .page-header {
       border-bottom: 2px solid #000;
       padding-bottom: 20px;
@@ -712,6 +771,19 @@
 
       <!-- ================= 2. TEACHING PAGE ================= -->
       <section id="sec-teaching" class="page-section">
+        <!-- Password Protection Gate -->
+        <div id="teaching-gate" class="pwd-gate">
+          <span class="mono-pill" style="margin-right:0;">RESTRICTED ACCESS</span>
+          <h2>Teaching Materials</h2>
+          <p>Please enter the access password to view BS2591 tutorial materials and interactive tools.</p>
+          <form class="pwd-form" onsubmit="return unlockTeaching(event)">
+            <input type="password" id="teaching-pwd-input" class="pwd-input" placeholder="Password..." autocomplete="off">
+            <button type="submit" class="btn-solid">Unlock</button>
+          </form>
+          <div id="teaching-pwd-err" class="pwd-error">Incorrect password. Please try again.</div>
+        </div>
+
+        <div id="teaching-content" style="display:none;">
         <div class="page-header">
           <div class="page-header-top">
             <h1>BS2591 Macroeconomic Theory and Applications</h1>
@@ -728,6 +800,11 @@
               <strong>Core Textbook:</strong> Carlin &amp; Soskice (2024), <em>Macroeconomics: Institutions, Instability, and Inequality</em> (C&amp;S).
             </div>
           </div>
+        </div>
+
+        <!-- Unofficial Materials Red Alert -->
+        <div class="unofficial-alert">
+          <strong>Important Notice:</strong> The tutorial slides, derivation notes, and interactive tools on this page are <strong>not official course materials</strong>. They are provided by the Graduate Tutor for supplementary reference only. Please always refer to the official module materials on <strong>Learning Central</strong> as the authoritative source.
         </div>
 
         <!-- Online Interactive Lab -->
@@ -888,6 +965,7 @@
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       <!-- ================= 3. MOMO (摸摸) PAGE ================= -->
@@ -938,11 +1016,40 @@
     const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
     let currentYearFilter = 'ALL';
 
+    function unlockTeaching(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('teaching-pwd-input');
+      const err = document.getElementById('teaching-pwd-err');
+      if (input.value.trim().toLowerCase() === 'momo') {
+        sessionStorage.setItem('teaching_unlocked', '1');
+        document.getElementById('teaching-gate').style.display = 'none';
+        document.getElementById('teaching-content').style.display = 'block';
+        err.style.display = 'none';
+      } else {
+        err.style.display = 'block';
+        input.select();
+      }
+      return false;
+    }
+
+    function checkTeachingAuth() {
+      if (sessionStorage.getItem('teaching_unlocked') === '1') {
+        document.getElementById('teaching-gate').style.display = 'none';
+        document.getElementById('teaching-content').style.display = 'block';
+      }
+    }
+
     function switchTab(tab) {
       ['home', 'teaching', 'momo'].forEach(t => {
         document.getElementById('sec-' + t).classList.toggle('active', t === tab);
         document.getElementById('nav-' + t).classList.toggle('active', t === tab);
       });
+      if (tab === 'teaching' && sessionStorage.getItem('teaching_unlocked') !== '1') {
+        setTimeout(() => {
+          const inp = document.getElementById('teaching-pwd-input');
+          if (inp) inp.focus();
+        }, 50);
+      }
       if (history.replaceState) {
         history.replaceState(null, null, tab === 'home' ? window.location.pathname : '#' + tab);
       }
@@ -1022,6 +1129,7 @@
     }
 
     // Handle initial URL hash
+    checkTeachingAuth();
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (['home', 'teaching', 'momo'].includes(hash)) {
       switchTab(hash);
