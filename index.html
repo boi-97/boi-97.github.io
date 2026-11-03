@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boyu Mu — PhD Candidate in Economics | Cardiff University</title>
+  <meta name="description" content="Academic homepage of Boyu Mu, PhD Candidate in Economics at Cardiff University. Research in housing markets, multimodal machine learning, and spatial inequality. BS2591 Macroeconomics teaching materials.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #525252;
+      --light: #737373;
+      --border: #e5e5e5;
+      --border-strong: #000000;
+      --surface: #fafafa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; }
+    .site-wrapper {
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation */
+    header.site-nav {
+      padding: 22px 0;
+      border-bottom: 2px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-btn {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border: 2px solid transparent;
+      background: transparent;
+      color: #525252;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      letter-spacing: 0.04em;
+      font-family: inherit;
+    }
+    .nav-btn:hover {
+      color: #000;
+    }
+    .nav-btn.teaching-prominent {
+      border-color: #000;
+      color: #000;
+      text-transform: uppercase;
+    }
+    .nav-btn.momo-btn {
+      border-color: #000;
+      color: #000;
+    }
+    .nav-btn.active {
+      background: #000 !important;
+      color: #fff !important;
+      border-color: #000 !important;
+    }
+
+    /* Page Containers */
+    main {
+      padding: 40px 0 64px;
+      flex: 1;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+    }
+
+    /* HOME PAGE */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 640px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .profile-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    .avatar-box {
+      width: 156px;
+      height: 192px;
+      background: #fafafa;
+      border: 1px solid #d4d4d4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .avatar-monogram {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: #262626;
+    }
+    .contact-list {
+      font-size: 12.5px;
+      color: #404040;
+      line-height: 1.8;
+    }
+    .contact-list a {
+      color: #000;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .bio-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .bio-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+    .bio-header .affil {
+      font-size: 15px;
+      color: #404040;
+    }
+    .bio-header .affil strong {
+      color: #000;
+      font-weight: 600;
+    }
+    .bio-p {
+      font-size: 13.5px;
+      color: #262626;
+      margin: 0 0 20px 0;
+      line-height: 1.7;
+    }
+    .kicker-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #000;
+      margin: 0 0 10px 0;
+    }
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .interest-tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 11px;
+      background: #f5f5f5;
+      border: 1px solid #d4d4d4;
+      color: #111;
+    }
+
+    .home-block {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 32px;
+    }
+    .home-block h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #000;
+      margin: 0 0 14px 0;
+    }
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 13.5px;
+      gap: 16px;
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-year {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #737373;
+      white-space: nowrap;
+    }
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 13.5px;
+      color: #333;
+    }
+    .skills-list strong { color: #000; }
+
+    .teaching-callout {
+      border: 2px solid #000;
+      background: #fafafa;
+      padding: 18px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .mono-pill {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      margin-right: 8px;
+      letter-spacing: 0.04em;
+    }
+    .btn-solid {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: 2px solid #000;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn-solid:hover {
+      background: #262626;
+    }
+
+    /* TEACHING PAGE */
+    .page-header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .page-header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-size: 25px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+    .mono-meta {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: #525252;
+    }
+    .module-details {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.75;
+    }
+    .module-details a {
+      color: #000;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .online-tool-banner {
+      border: 2px solid #000;
+      background: #fafafa;
+      padding: 22px;
+      margin-bottom: 32px;
+    }
+    .online-tool-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .section-bar h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0;
+      color: #000;
+    }
+    .tutorial-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tutorial-card {
+      border: 1px solid #d4d4d4;
+      background: #fff;
+      padding: 16px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .tutorial-card.has-material {
+      border-color: #000;
+    }
+    .tut-top-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    .tut-idx {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      background: #e5e5e5;
+      color: #333;
+    }
+    .tutorial-card.has-material .tut-idx {
+      background: #000;
+      color: #fff;
+    }
+    .tut-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #404040;
+      letter-spacing: 0.03em;
+    }
+    .tut-date {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #525252;
+    }
+    .tut-topic-line {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #000;
+    }
+    .tut-chap {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: #737373;
+      margin-left: 6px;
+    }
+    .tut-containers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .box-slides-ready {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 108px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .box-slides-ready:hover { opacity: 0.85; }
+    .box-deriv-ready {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 152px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .box-deriv-ready:hover { background: #f5f5f5; }
+    .box-tba {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #a3a3a3;
+      background: #fafafa;
+      border: 1px dashed #d4d4d4;
+      user-select: none;
+    }
+    .box-tba.slides-w { min-width: 108px; }
+    .box-tba.deriv-w { min-width: 152px; }
+
+    /* MOMO PAGE */
+    .momo-head-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .year-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .yr-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border: 1px solid #d4d4d4;
+      background: #fff;
+      color: #525252;
+      cursor: pointer;
+    }
+    .yr-pill.has-photos {
+      border-color: #737373;
+      color: #000;
+      font-weight: 600;
+    }
+    .yr-pill.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      font-weight: 700;
+    }
+    .timeline-rail {
+      position: relative;
+      border-left: 2px solid #000;
+      margin-left: 10px;
+      padding-left: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .yr-node {
+      position: relative;
+    }
+    .yr-dot {
+      position: absolute;
+      left: -34px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: #000;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #000;
+    }
+    .yr-dot.empty {
+      background: #fff;
+      box-shadow: 0 0 0 2px #d4d4d4;
+    }
+    .yr-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+    }
+    .yr-bar.active {
+      border-bottom-color: #000;
+    }
+    .yr-title {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+    }
+    .yr-title.empty {
+      color: #a3a3a3;
+    }
+    .yr-count {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #737373;
+    }
+    .momo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .momo-card {
+      border: 1px solid #d4d4d4;
+      background: #fff;
+      padding: 9px;
+      transition: border-color 0.15s ease;
+      cursor: zoom-in;
+    }
+    .momo-card:hover {
+      border-color: #000;
+    }
+    .momo-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #efefef;
+      background: #f5f5f5;
+    }
+    .momo-cap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 9px;
+      font-size: 12px;
+    }
+    .momo-cap-loc {
+      font-weight: 600;
+      color: #111;
+    }
+    .momo-cap-date {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      color: #737373;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    #lightbox.open {
+      display: flex;
+    }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border: 2px solid #fff;
+      background: #000;
+    }
+
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <!-- Top Navigation -->
+    <header class="site-nav">
+      <a href="#home" onclick="switchTab('home'); return false;" class="brand">Boyu Mu</a>
+      <nav class="nav-links">
+        <button id="nav-home" onclick="switchTab('home')" class="nav-btn active">HOME</button>
+        <button id="nav-teaching" onclick="switchTab('teaching')" class="nav-btn teaching-prominent">TEACHING</button>
+        <button id="nav-momo" onclick="switchTab('momo')" class="nav-btn momo-btn">摸摸</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ================= 1. HOME PAGE ================= -->
+      <section id="sec-home" class="page-section active">
+        <div class="hero-grid">
+          <div class="profile-sidebar">
+            <div class="avatar-box">
+              <span class="avatar-monogram">BM</span>
+            </div>
+            <div class="contact-list">
+              <div><strong style="color:#000;">mub@cardiff.ac.uk</strong></div>
+              <div><a href="https://github.com/boi-97" target="_blank" rel="noopener">github.com/boi-97</a></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="bio-header">
+              <h1>Boyu Mu</h1>
+              <div class="affil"><strong>PhD Candidate in Economics</strong>, Cardiff University</div>
+            </div>
+            <p class="bio-p">
+              Economics PhD researcher combining econometric methods with multimodal machine learning to study housing markets and spatial inequality. My work draws on images, text and geospatial data to measure neighbourhood and housing characteristics that are difficult to capture with conventional data, with an emphasis on interpretable models that speak to policy-relevant questions. I bring an interdisciplinary background spanning business, education and finance, together with practical experience in financial research and international academic exchange.
+            </p>
+            <div>
+              <div class="kicker-title">Research Interests</div>
+              <div class="interest-tags">
+                <span class="interest-tag">Housing markets</span>
+                <span class="interest-tag">Multimodal machine learning</span>
+                <span class="interest-tag">Spatial inequality</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-block">
+          <h2>Education</h2>
+          <div class="edu-list">
+            <div class="edu-item"><div><strong>Cardiff University</strong>, PhD in Economics</div><span class="edu-year">2026–Present</span></div>
+            <div class="edu-item"><div><strong>Cardiff University</strong>, MRes Advanced Economics — Distinction</div><span class="edu-year">2025–2026</span></div>
+            <div class="edu-item"><div><strong>Cardiff University</strong>, MSc Economics — Distinction</div><span class="edu-year">2024–2025</span></div>
+            <div class="edu-item"><div><strong>Cardiff University</strong>, MSc International Economics, Banking and Finance — Distinction</div><span class="edu-year">2023–2024</span></div>
+            <div class="edu-item"><div><strong>University of Exeter</strong>, MA International Education — Distinction</div><span class="edu-year">2020–2021</span></div>
+            <div class="edu-item"><div><strong>University of Hertfordshire</strong>, BA Business Administration — First Class Honours</div><span class="edu-year">2017–2020</span></div>
+          </div>
+        </div>
+
+        <div class="home-block">
+          <h2>Research &amp; Technical Skills</h2>
+          <div class="skills-list">
+            <div><strong>Research Methods:</strong> Econometric modelling, panel data analysis, spatial analysis, quantitative and qualitative research, thematic analysis.</div>
+            <div><strong>Machine Learning &amp; AI:</strong> Multimodal deep learning, computer vision, natural language processing, model interpretability (SHAP), large language models.</div>
+            <div><strong>Programming &amp; Software:</strong> Python, R, MATLAB, Stata, EViews, QGIS, LaTeX.</div>
+            <div><strong>Languages:</strong> Mandarin Chinese (native), English (fluent; professional interpreting experience).</div>
+          </div>
+        </div>
+
+        <div class="home-block">
+          <h2>Teaching &amp; Academic Experience</h2>
+          <div class="teaching-callout">
+            <div>
+              <div style="margin-bottom:4px;">
+                <span class="mono-pill">TEACHING</span>
+                <strong style="font-size:14.5px;color:#000;">Graduate Tutor — BS2591 Macroeconomic Theory and Applications</strong>
+              </div>
+              <div style="font-size:13px;color:#404040;">
+                Cardiff University (Sep 2026–Present) · Module Lecturer: Dr. Wojtek Paczos · Tutorials held on Thursdays.
+              </div>
+            </div>
+            <button onclick="switchTab('teaching')" class="btn-solid">View Tutorial Materials &rarr;</button>
+          </div>
+
+          <div style="font-size:13.5px;color:#333;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <strong style="color:#000;">Academic Visit Coordinator</strong>
+              <span class="edu-year">Jun–Sep 2026</span>
+            </div>
+            <div>
+              Coordinated academic visits for delegations of Chinese scholars, experts and policymakers, managing itineraries and travel logistics. Liaised with host institutions to arrange academic meetings and provided Chinese–English interpretation.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. TEACHING PAGE ================= -->
+      <section id="sec-teaching" class="page-section">
+        <div class="page-header">
+          <div class="page-header-top">
+            <h1>BS2591 Macroeconomic Theory and Applications</h1>
+            <span class="mono-meta">2026/27 Academic Year · Cardiff University</span>
+          </div>
+          <div class="module-details">
+            <div>
+              <strong>Module Lecturer:</strong> <a href="https://www.cardiff.ac.uk/people/view/1258246-paczos-wojtek" target="_blank" rel="noopener">Dr. Wojtek Paczos</a> ·
+              <strong>Graduate Tutor:</strong> Boyu Mu (<a href="mailto:mub@cardiff.ac.uk">mub@cardiff.ac.uk</a>)
+            </div>
+            <div>
+              <strong>Tutorials:</strong> Held on <strong>Thursdays</strong> ·
+              <strong>Core Textbook:</strong> Carlin &amp; Soskice (2024), <em>Macroeconomics: Institutions, Instability, and Inequality</em> (C&amp;S).
+            </div>
+          </div>
+        </div>
+
+        <!-- Online Interactive Lab -->
+        <div class="online-tool-banner">
+          <div class="online-tool-head">
+            <div>
+              <span class="mono-pill">ONLINE TOOL</span>
+              <strong style="font-size:15.5px;color:#000;">Interactive Three-Equation Model Lab</strong>
+            </div>
+            <span class="mono-meta">IS–PC–MR Simulator</span>
+          </div>
+          <p style="font-size:13px;color:#333;margin:0 0 14px 0;">
+            An interactive web laboratory for visualising demand, supply, and inflation shocks in the 3-equation model, comparing central bank preferences (<em>&beta;</em>), and exploring impulse response functions (IRFs) and the deflation trap (ZLB).
+          </p>
+          <a href="three_equation_lab.html" target="_blank" class="btn-solid">Launch Interactive Three-Equation Lab &nearr;</a>
+        </div>
+
+        <!-- 8 Tutorials List -->
+        <div class="section-bar">
+          <h2>Teaching &amp; Tutorial Materials — Autumn Semester (2026)</h2>
+          <span class="mono-meta">8 Sessions (Thursdays)</span>
+        </div>
+
+        <div class="tutorial-stack">
+          <!-- Tutorial 1 -->
+          <div class="tutorial-card has-material">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">01</span>
+                <span class="tut-label">Tutorial 1 (Lectures 1 &amp; 2)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 22 Oct 2026</span>
+              </div>
+              <div class="tut-topic-line">The Demand Side &amp; The Supply Side <span class="tut-chap">(C&amp;S Ch. 1 &amp; Ch. 2)</span></div>
+            </div>
+            <div class="tut-containers">
+              <a href="materials/BS2591_Tutorial1_Slides.pdf" target="_blank" class="box-slides-ready">Slides (PDF)</a>
+              <a href="materials/BS2591_Tutorial1_Derivation_Support.pdf" target="_blank" class="box-deriv-ready">Derivation Support</a>
+            </div>
+          </div>
+
+          <!-- Tutorial 2 -->
+          <div class="tutorial-card has-material">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">02</span>
+                <span class="tut-label">Tutorial 2 (Lecture 3)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 29 Oct 2026</span>
+              </div>
+              <div class="tut-topic-line">The Three-Equation Model <span class="tut-chap">(C&amp;S Ch. 3)</span></div>
+            </div>
+            <div class="tut-containers">
+              <a href="materials/BS2591_Tutorial2_Slides.pdf" target="_blank" class="box-slides-ready">Slides (PDF)</a>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 3 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">03</span>
+                <span class="tut-label">Tutorial 3 (Lecture 4)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 05 Nov 2026</span>
+              </div>
+              <div class="tut-topic-line">Expectations <span class="tut-chap">(C&amp;S Ch. 4)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 4 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">04</span>
+                <span class="tut-label">Tutorial 4 (Lecture 5)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 19 Nov 2026</span>
+              </div>
+              <div class="tut-topic-line">Money and Banking <span class="tut-chap">(C&amp;S Ch. 5)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 5 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">05</span>
+                <span class="tut-label">Tutorial 5 (Lecture 6)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 26 Nov 2026</span>
+              </div>
+              <div class="tut-topic-line">Monetary Policy <span class="tut-chap">(C&amp;S Ch. 6)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 6 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">06</span>
+                <span class="tut-label">Tutorial 6 (Lecture 7)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 03 Dec 2026</span>
+              </div>
+              <div class="tut-topic-line">Fiscal Policy I <span class="tut-chap">(C&amp;S Ch. 7)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 7 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">07</span>
+                <span class="tut-label">Tutorial 7 (Lecture 8)</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 10 Dec 2026</span>
+              </div>
+              <div class="tut-topic-line">Fiscal Policy II <span class="tut-chap">(C&amp;S Ch. 7)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+
+          <!-- Tutorial 8 -->
+          <div class="tutorial-card">
+            <div>
+              <div class="tut-top-line">
+                <span class="tut-idx">08</span>
+                <span class="tut-label">Revision Tutorial</span>
+                <span style="color:#ccc;">|</span>
+                <span class="tut-date">Thu, 14 Jan 2027</span>
+              </div>
+              <div class="tut-topic-line">Revision Week <span class="tut-chap">(C&amp;S Ch. 1–7)</span></div>
+            </div>
+            <div class="tut-containers">
+              <span class="box-tba slides-w">Slides (TBA)</span>
+              <span class="box-tba deriv-w">Derivation Support</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. MOMO (摸摸) PAGE ================= -->
+      <section id="sec-momo" class="page-section">
+        <div class="page-header momo-head-row">
+          <div>
+            <div style="margin-bottom:8px;">
+              <span class="mono-pill">FELINE CHRONICLE · 2018–2026</span>
+              <span class="mono-meta" style="color:#737373;">Born 2017 · Recorded since 2018</span>
+            </div>
+            <h1>摸摸 (Momo)</h1>
+            <div style="font-size:13.5px;color:#404040;font-weight:500;margin-top:4px;">
+              Chief Momo Officer · PhD Supervision Assistant
+            </div>
+          </div>
+          <div id="momo-pills" class="year-pills"></div>
+        </div>
+
+        <div id="momo-timeline" class="timeline-rail"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      Boyu Mu · Cardiff University
+    </footer>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div id="lightbox" onclick="this.classList.remove('open')">
+    <img id="lightbox-img" src="" alt="Momo full size">
+  </div>
+
+  <script>
+    const MOMO_ARCHIVE = [
+      { year: 2018, date: "27 Mar 2018", title: "2018 Momo in Hatfield", src: "momo/2018_01_Hatfield_20180327_2036.jpg" },
+      { year: 2018, date: "27 Mar 2018", title: "2018 Momo in Hatfield", src: "momo/2018_02_Hatfield_20180327_2037.jpg" },
+      { year: 2019, date: "21 Feb 2019", title: "2019 Momo in Hatfield", src: "momo/2019_01_Hatfield_20190221.jpg" },
+      { year: 2019, date: "23 Feb 2019", title: "2019 Momo in Hatfield", src: "momo/2019_02_Hatfield_20190223.jpg" },
+      { year: 2019, date: "24 Mar 2019", title: "2019 Momo in Hatfield", src: "momo/2019_03_Hatfield_20190324_0621.jpg" },
+      { year: 2019, date: "24 Mar 2019", title: "2019 Momo in Hatfield", src: "momo/2019_04_Hatfield_20190324_0640.jpg" },
+      { year: 2019, date: "24 Mar 2019", title: "2019 Momo in Hatfield", src: "momo/2019_05_Hatfield_20190324_1425.jpg" },
+      { year: 2019, date: "15 Apr 2019", title: "2019 Momo in Hatfield", src: "momo/2019_06_Hatfield_20190415.jpg" },
+      { year: 2019, date: "19 Apr 2019", title: "2019 Momo in Hatfield", src: "momo/2019_07_Hatfield_20190419.jpg" },
+      { year: 2020, date: "15 Apr 2020", title: "2020 Momo in Hatfield", src: "momo/2020_01_Hatfield_20200415.jpg" },
+      { year: 2020, date: "16 Apr 2020", title: "2020 Momo in Hatfield", src: "momo/2020_02_Hatfield_20200416.jpg" }
+    ];
+
+    const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+    let currentYearFilter = 'ALL';
+
+    function switchTab(tab) {
+      ['home', 'teaching', 'momo'].forEach(t => {
+        document.getElementById('sec-' + t).classList.toggle('active', t === tab);
+        document.getElementById('nav-' + t).classList.toggle('active', t === tab);
+      });
+      if (history.replaceState) {
+        history.replaceState(null, null, tab === 'home' ? window.location.pathname : '#' + tab);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterYear(yr) {
+      currentYearFilter = yr;
+      renderMomo();
+    }
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.classList.add('open');
+    }
+
+    function renderMomo() {
+      const pillsEl = document.getElementById('momo-pills');
+      pillsEl.innerHTML = [
+        `<button onclick="filterYear('ALL')" class="yr-pill ${currentYearFilter === 'ALL' ? 'active' : ''}">All</button>`,
+        ...YEARS.map(y => {
+          const cnt = MOMO_ARCHIVE.filter(p => p.year === y).length;
+          return `<button onclick="filterYear(${y})" class="yr-pill ${cnt > 0 ? 'has-photos' : ''} ${currentYearFilter === y ? 'active' : ''}">${y}${cnt > 0 ? ' (' + cnt + ')' : ''}</button>`;
+        })
+      ].join('');
+
+      const showYears = currentYearFilter === 'ALL' ? YEARS : YEARS.filter(y => y === currentYearFilter);
+      const timelineEl = document.getElementById('momo-timeline');
+      timelineEl.innerHTML = showYears.map(y => {
+        const items = MOMO_ARCHIVE.filter(p => p.year === y);
+        const has = items.length > 0;
+        const headerText = has ? `${y} · Momo in Hatfield` : `${y}`;
+        return `
+          <div class="yr-node">
+            <div class="yr-dot ${has ? '' : 'empty'}"></div>
+            <div class="yr-bar ${has ? 'active' : ''}">
+              <span class="yr-title ${has ? '' : 'empty'}">${headerText}</span>
+              <span class="yr-count">${has ? items.length + (items.length === 1 ? ' photo' : ' photos') : ''}</span>
+            </div>
+            ${has ? `
+              <div class="momo-grid">
+                ${items.map(it => `
+                  <div class="momo-card" onclick="openLightbox('${it.src}')">
+                    <img src="${it.src}" alt="${it.title}" loading="lazy">
+                    <div class="momo-cap">
+                      <span class="momo-cap-loc">${it.title}</span>
+                      <span class="momo-cap-date">${it.date}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Handle initial URL hash
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (['home', 'teaching', 'momo'].includes(hash)) {
+      switchTab(hash);
+    }
+    renderMomo();
+  </script>
+</body>
+</html>
