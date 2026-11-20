@@ -1010,7 +1010,9 @@
       { year: 2019, date: "15 Apr 2019", title: "2019 Momo in Hatfield", src: "momo/2019_06_Hatfield_20190415.jpg" },
       { year: 2019, date: "19 Apr 2019", title: "2019 Momo in Hatfield", src: "momo/2019_07_Hatfield_20190419.jpg" },
       { year: 2020, date: "15 Apr 2020", title: "2020 Momo in Hatfield", src: "momo/2020_01_Hatfield_20200415.jpg" },
-      { year: 2020, date: "16 Apr 2020", title: "2020 Momo in Hatfield", src: "momo/2020_02_Hatfield_20200416.jpg" }
+      { year: 2020, date: "16 Apr 2020", title: "2020 Momo in Hatfield", src: "momo/2020_02_Hatfield_20200416.jpg" },
+      { year: 2026, date: "20 Nov 2026", title: "2026 Momo", src: "momo/2026_01_20261120.jpg" },
+      { year: 2026, date: "20 Nov 2026", title: "2026 Momo", src: "momo/2026_02_20261120.jpg" }
     ];
 
     const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
@@ -1082,7 +1084,7 @@
       timelineEl.innerHTML = showYears.map(y => {
         const items = MOMO_ARCHIVE.filter(p => p.year === y);
         const has = items.length > 0;
-        const headerText = has ? `${y} · Momo in Hatfield` : `${y}`;
+        const headerText = has ? (y <= 2020 ? `${y} · Momo in Hatfield` : `${y} · Momo`) : `${y}`;
         return `
           <div class="yr-node">
             <div class="yr-dot ${has ? '' : 'empty'}"></div>
